@@ -1,5 +1,5 @@
 <template>
-    <h1>Details {{ this.$route.params.id }}</h1>
+    <h1>Детали {{ this.$route.params.id }}</h1>
 </template>
 <script>
 export default {

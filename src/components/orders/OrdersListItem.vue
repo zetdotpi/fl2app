@@ -6,7 +6,13 @@
             <a href="#" @click="toggleDetails">ФЛ{{ order.id }} (от {{ order.created_datetime|moment('DD.MM.YYYY hh:mm:ss') }})</a>
             на сумму {{ order.total }}₽
             <span class="badge badge-pill badge-light">{{ getStatusString(order.status) }}</span>
-            <a class="btn-sm btn-light" @click="downloadInvoice">Скачать счет</a>
+            <a
+                class="btn-sm btn-light"
+                @click="downloadInvoice">Скачать счет</a>
+            <a
+                v-if="$auth.user().role === 'admin' & order.status === 'not_paid'"
+                class="btn-sm btn-success"
+                @click="setOrderAsPaid">Заказ оплачен</a>
         </div>
         <div v-if="showDetails">
             <br>
@@ -75,6 +81,14 @@ export default {
 
         downloadInvoice () {
             this.$store.dispatch('downloadInvoice', this.order.invoice_pdf_path)
+        },
+        setOrderAsPaid () {
+            if (confirm('Вы уверены, что хотите отметить этот счет ОПЛАЧЕННЫМ?')) {
+                this.$store.dispatch('setOrderIsPaid', this.order.id)
+                console.log('order ' + this.order.id + ' status is set to PAID')
+            } else {
+                console.log('cancelled')
+            }
         }
     }
 }

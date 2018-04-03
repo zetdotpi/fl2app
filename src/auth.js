@@ -17,7 +17,7 @@ Vue.use(VueAuth, {
         },
         response(res) {
             return (res.data.token || null)
-        },
+        },initStores
         success () {
             console.log('authentication succeeded')
         }

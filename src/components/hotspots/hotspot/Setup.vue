@@ -1,7 +1,7 @@
 <template>
     <div class="col">
         <div class="row">
-            <h1>Hotspot setup</h1>
+            <h1>Настройка хотспота</h1>
         </div>
         <!-- <transition name="fade" mode="out-in"> -->
         <component :is="currentComponent" :interfaces="hotspot.interfaces" :message="currentMsg" @setupStarted="setupStarted = true"></component>

@@ -7,7 +7,7 @@
             </div>
         </template>
         <template v-if="!this.$auth.ready()">
-            <p>Loading…</p>
+            <p>Загрузка…</p>
         </template>
     </div>
 </template>
@@ -21,8 +21,11 @@ export default {
     },
     created () {
         this.$auth.ready(() => {
-            console.log('auth completed. Initializing stores')
-            this.$store.dispatch('initStores')
+            console.log('auth system is ready')
+            if (this.$auth.check()) {
+                console.log('authentication is done. Initializing stores')
+                this.$store.dispatch('initStores')
+            }
         })
     }
 }

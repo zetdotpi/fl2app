@@ -3,11 +3,11 @@
     <div class="row">
         <form class="form-inline" @submit.prevent>
             <div class="form-group">
-                <label for="startDate">Start date:</label>
+                <label for="startDate">Начальная дата:</label>
                 <datepicker id="startDate" :bootstrapStyling="true" v-model='startDate' @input="updateStats"/>
             </div>
             <div class="form-group">
-                <label for="endDate">End date:</label>
+                <label for="endDate">Конечная дата:</label>
                 <datepicker id="endDate" :bootstrapStyling="true" v-model='endDate' @input="updateStats"/>
             </div>
         </form>
@@ -22,7 +22,7 @@
         :datalabel="'Logins count'"
         :data="hotspot.stats.loginData"
         :fill="true"/>
-    <p>{{ loginsTotal }} logins at selected period.</p>
+    <p>{{ loginsTotal }} входов за выбранный период.</p>
 
     <chartjs-bar
         :height="100"
@@ -33,7 +33,7 @@
         :datalabel="'SMS usage'"
         :data="hotspot.stats.smsData"
         :fill="true"/>
-    <p>{{ smsTotal }} sms used at selected period.</p>
+    <p>{{ smsTotal }} СМС использовано за выбранный период.</p>
 </div>
 </template>
 <script>

@@ -23,6 +23,9 @@ export default new Vuex.Store({
         basketItems (state) {
             return state.basket
         },
+        basketItemsCount (state) {
+            return state.basket.length
+        },
         initialized (state) {
             return state.initialized
         }
@@ -256,6 +259,20 @@ export default new Vuex.Store({
                 .catch(e => {
                     console.log('cannot download invoice')
                     console.log(e)
+                })
+        },
+
+        setOrderIsPaid (context, orderId) {
+            Vue.axios.post(
+                '/orders/' + orderId + '/action/',
+                {action: 'confirm_payment'})
+                .then(response => {
+                    console.log(response)
+                    context.dispatch('fetchOrders')
+                })
+                .catch(err => {
+                    console.log('cannot set order ' + orderId + ' status to paid')
+                    console.log(err)
                 })
         }
     }

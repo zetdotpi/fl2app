@@ -1,5 +1,8 @@
 <template>
-    <h1>Hotspots overview</h1>
+    <div class="row">
+        <h1>Обзор хотспотов</h1>
+        <p>Скоро здесь будет полезная обзорная информация. Ну а пока здесь только этот текст.</p>
+    </div>
 </template>
 <script>
 </script>

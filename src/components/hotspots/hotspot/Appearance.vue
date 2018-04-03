@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col">
             <div class="card">
-                <div class="card-header">Preview</div>
+                <div class="card-header">Предпросмотр</div>
                 <div class="card-body">
                     <h3>{{ this.hotspot.appearance.title }}</h3>
                     <p>{{ this.hotspot.appearance.text }}</p>
@@ -18,8 +18,8 @@
                                 @change="uploadNewLogo">
                         </div>
                         <div class="btn-group">
-                            <button class="btn btn-default" @click="requestNewLogo">Upload new</button>
-                            <button v-if="hotspot.appearance.logo_absolute_path != null" class="btn btn-danger" @click="removeLogo">Delete</button>
+                            <button class="btn btn-default" @click="requestNewLogo">Закачать новую картинку</button>
+                            <button v-if="hotspot.appearance.logo_absolute_path != null" class="btn btn-danger" @click="removeLogo">Удалить</button>
                         </div>
                     </form>
                 </div>
@@ -27,20 +27,20 @@
         </div>
         <div class="col">
             <div class="card">
-                <div class="card-header">Params</div>
+                <div class="card-header">Параметры</div>
                 <div class="card-body">
                     <form @submit.prevent>
                         <div class="form-group">
-                            <label for="title">Title</label>
+                            <label for="title">Заголовок</label>
                             <input name="title" type="text" class="form-control" v-model="title">
                         </div>
                         <div class="form-group">
-                            <label for="text">Text</label>
+                            <label for="text">Текст</label>
                             <input name="text" type="text" class="form-control" v-model="text">
                         </div>
                     </form>
-                    <button class="btn btn-default">Save</button>
-                    <button class="btn btn-default" @click="reset">Reset</button>
+                    <button class="btn btn-default">Сохранить</button>
+                    <button class="btn btn-default" @click="reset">Сбросить</button>
                 </div>
             </div>
         </div>
@@ -76,7 +76,7 @@ export default {
         },
 
         removeLogo () {
-            if (confirm('Are you sure you want to delete image?')) {
+            if (confirm('Вы уверены, что хотите удалить изображение?')) {
                 this.$store.dispatch('removeHotspotLogo', this.hotspot.identity)
             } else {
                 console.log('keep logo')

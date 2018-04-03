@@ -1,17 +1,18 @@
 <template>
     <div class="row">
         <form class="form-signin">
-            <h2 class="form-signin-heading">Sign in please</h2>
+            <div v-if="loginFailed === true" class="alert alert-info">Неверное имя пользователя или пароль</div>
+            <!-- <h2 class="form-signin-heading">Sign in</h2> -->
             <label for="inputEmail" class="sr-only">Email</label>
             <input type="text" class="form-control" v-model="username">
-            <label for="inputPassword" class="sr-only">Password</label>
+            <label for="inputPassword" class="sr-only">Пароль</label>
             <input type="password" class="form-control" v-model="password">
             <div class="checkbox">
                 <label>
-                    <input type="checkbox" v-model="rememberMe"> Remember me
+                    <input type="checkbox" v-model="rememberMe"> Запомнить
                 </label>
             </div>
-            <button class="btn btn-primary btn-block" @click.prevent="login">Sign in</button>
+            <button class="btn btn-primary btn-block" @click.prevent="login">Войти</button>
         </form>
     </div>
 </template>
@@ -21,26 +22,32 @@ export default {
         return {
             username: '',
             password: '',
-            rememberMe: true
+            rememberMe: true,
+            loginFailed: false
         }
     },
     methods: {
         login () {
+            this.loginFailed = false
             this.$auth.login({
                 data: {
                     username: this.username,
                     password: this.password
                 },
-                rememberMe: this.rememberMe
-            })
-                .then(res => {
+                rememberMe: this.rememberMe,
+                success () {
+                    console.log('dispatching initStores')
                     this.$store.dispatch('initStores')
                     console.log('whoa!')
-                })
+                },
+                error (res) {
+                    this.loginFailed = true
+                }
+            })
         }
-        // login(this.$auth.login())
     },
     mounted () {
+        this.loginFailed = false
         if (this.$auth.check()) {
             this.$router.push({name: 'home'})
         }

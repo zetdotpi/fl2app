@@ -1,7 +1,7 @@
 <template>
     <div class="row">
         <nav class="col-sm-3 col-md-2 hidden-xs-down bg-faded sidebar justify-content">
-            <router-link tag="button" class="btn btn-info" :to="{name: 'hotspots-new'}">Register hotspot</router-link>
+            <router-link tag="button" class="btn btn-info" :to="{name: 'hotspots-new'}">Добавить новый</router-link>
             <ul class="nav nav-pills flex-column">
                 <li v-for="hs in hotspots" :key="hs.identity" class="nav-item">
                     <router-link

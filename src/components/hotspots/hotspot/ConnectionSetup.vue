@@ -1,10 +1,10 @@
 <template>
     <div class="col">
         <div class="row">
-            <h1>Connection setup for {{ hotspot.name }}</h1>
+            <h1>Настройка соединения для {{ hotspot.name }}</h1>
         </div>
         <div class="row">
-            <p>Please login to your router using winbox, open "New Terminal" and enter (or paste) following commands:</p>
+            <p>Пожалуйста, подключитесь к своему роутеру, используя winbox, откройте "New Terminal" и введите (или вставьте) следующие комманды:</p>
             <div class="card">
                 <div class="card-body">
                     <pre><code id="vpnSetupCode">/interface ovpn-client add name=FeedLikesVPN connect-to=vpn.feedlikes.ru user={{hotspot.vpnUser.username}} password={{hotspot.vpnUser.password}} port=1194 cipher=null add-default-route=no
@@ -12,25 +12,25 @@
 /ip service set numbers=api port=8728
 /ip firewall filter add chain=input protocol=tcp dst-port=8728 action=accept place-before=1
 </code></pre>
-                    <button class="btn btn-default" @click="copyToClipboard">Copy to clipboard</button>
+                    <button class="btn btn-default" @click="copyToClipboard">Скопировать</button>
                 </div>
             </div>
-            <p>Please be patient. Connection setup can take a while.</p>
+            <p>Пожалуйста, подождите. Настройка соединения может занять некоторое время.</p>
         </div>
         <div class="row justify-content-center">
             <form class="col-md-4">
                 <div class="form-group">
-                    <label for="username">Username:</label>
+                    <label for="username">Имя пользователя:</label>
                     <input type="text" name="username" class="form-control" v-model="username">
                     <small class="form-text">
-                    Router user name with admin rights. We do not store this username and password and will not use them after hotspot connection procedure is complete.
+                    Имя пользователя роутера с полными (администраторскими) правами. Мы не сохраняем имя пользователя и пароль, и не используем их после окончания процедуры настройки соединения.
                     </small>
                 </div>
                 <div class="form-group">
-                    <label for="password">Password:</label>
+                    <label for="password">Пароль:</label>
                     <input type="password" name="password" class="form-control" v-model="password">
                 </div>
-                <button class="btn btn-info" @click.prevent="connect">Continue setup</button>
+                <button class="btn btn-info" @click.prevent="connect">Продолжить настройку</button>
             </form>
         </div>
     </div>

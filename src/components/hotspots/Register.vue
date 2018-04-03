@@ -1,15 +1,15 @@
 <template>
     <div>
         <div class="row">
-            <h1>Register new hotspot</h1>
+            <h1>Добавить новый хотспот</h1>
         </div>
         <div class="row justify-content-center">
             <form>
                 <div class="form-group">
-                    <label for="hotspotName">Hotspot name:</label>
+                    <label for="hotspotName">Название хотспота:</label>
                     <input type="text" name="hotspotName" class="form-control" v-model="hotspotName">
                 </div>
-                <button class="btn btn-primary btn-block" @click.prevent="registerNewHotspot(hotspotName)">Register</button>
+                <button class="btn btn-primary btn-block" @click.prevent="registerNewHotspot(hotspotName)">Добавить</button>
             </form>
         </div>
     </div>

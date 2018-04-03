@@ -1,5 +1,5 @@
 <template>
-    <div></div>
+    <div>Пользовательский профиль</div>
 </template>
 <script>
 </script>

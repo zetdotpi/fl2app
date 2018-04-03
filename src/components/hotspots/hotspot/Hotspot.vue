@@ -29,7 +29,7 @@
                     :to="{
                         name: 'hotspot-details',
                         params: {id: hotspot.identity}
-                    }">Overview</router-link>
+                    }">Обзор</router-link>
                 </li>
             <li class="nav-item">
                 <router-link
@@ -38,7 +38,7 @@
                     :to="{
                         name:'hotspot-stats',
                         params: {id: hotspot.identity}
-                    }">Statistics</router-link>
+                    }">Статистика</router-link>
             </li>
             <li class="nav-item">
                 <router-link
@@ -47,7 +47,7 @@
                     :to="{
                         name: 'hotspot-appearance',
                         params: {id: hotspot.identity}
-                    }">Appearance</router-link>
+                    }">Внешний вид</router-link>
             </li>
             <li class="nav-item">
                 <router-link
@@ -56,7 +56,7 @@
                     :to="{
                         name: 'hotspot-settings',
                         params: {id: hotspot.identity}
-                    }">Settings</router-link>
+                    }">Настройки</router-link>
             </li>
         </ul>
         <br>

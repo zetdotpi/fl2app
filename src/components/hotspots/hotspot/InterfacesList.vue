@@ -8,7 +8,7 @@
                     <label :for="iface.name">{{ iface.name }}</label>
                 </li>
             </ul>
-            <p v-else>No ethernet interfaces available</p>
+            <p v-else>Ethernet интерфейсы недоступны</p>
         </div>
         <div class="col">
             <ul class="list-group" v-if="interfaces.wlans.length > 0">
@@ -18,16 +18,16 @@
                 </li>
                 <li class="list-group-item">
                     <input type="checkbox" v-model="selectedInterfaces" value="add_virtualAP">
-                    <label>Add Virtual Access Point</label>
+                    <label>Добавить виртуальную точку доступа</label>
                 </li>
             </ul>
-            <p v-else>No wireless interfaces available</p>
+            <p v-else>Беспроводные интерфейсы недоступны</p>
         </div>
     </div>
     <br>
     <div class="row">
         <div class="col">
-            <button class="btn btn-primary" @click="setupInterfaces">Start setup</button>
+            <button class="btn btn-primary" @click="setupInterfaces">Начать настройку</button>
         </div>
     </div>
 </div>
