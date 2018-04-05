@@ -39,20 +39,8 @@ Vue.use(VueAuth, {
         response (res) {
             return (res.data.token || null)
         }
-        // success () {
-        //     console.log('authentication succeeded')
-        // }
     }
-    // refresh: {
-    //     success () {
-    //         console.log('refresh succeeded')
-    //     }
-    // }
-    // refreshData: {
-    //     enabled: true
-    // }
 })
-// Vue.use(VueCharts)
 new Vue({
     store,
     router,

@@ -8,7 +8,8 @@
             <span class="badge badge-pill badge-light">{{ getStatusString(order.status) }}</span>
             <a
                 class="btn-sm btn-light"
-                @click="downloadInvoice">Скачать счет</a>
+                :href="order.invoice_pdf_path"
+                download>Скачать счет</a>
             <a
                 v-if="$auth.user().role === 'admin' & order.status === 'not_paid'"
                 class="btn-sm btn-success"
@@ -78,10 +79,9 @@ export default {
                 return 'отменен'
             }
         },
-
-        downloadInvoice () {
-            this.$store.dispatch('downloadInvoice', this.order.invoice_pdf_path)
-        },
+        // downloadInvoice () {
+        //     this.$store.dispatch('downloadInvoice', this.order.invoice_pdf_path)
+        // },
         setOrderAsPaid () {
             if (confirm('Вы уверены, что хотите отметить этот счет ОПЛАЧЕННЫМ?')) {
                 this.$store.dispatch('setOrderIsPaid', this.order.id)

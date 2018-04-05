@@ -78,6 +78,11 @@ export default new Vuex.Store({
         },
         clearBasket (state) {
             state.basket = []
+        },
+        setHotspotAppearance (state, payload) {
+            let hotspot = state.hotspots.find(h => h.identity === payload.identity)
+            hotspot.appearance = payload.appearance
+            // Vue.set(hotspot, 'appearance', payload.appearance)
         }
     },
     actions: {
@@ -125,7 +130,9 @@ export default new Vuex.Store({
             Vue.axios.post('/hs/' + payload.identity + '/connect', data)
                 .then(response => {
                     Vue.router.push({name: 'hotspot-setup', params: {id: payload.identity}})
-                }, error => {
+                })
+                .catch(error => {
+                    console.log('cannot setup connection for hotspot ' + payload.identity)
                     console.log(error)
                 })
         },
@@ -267,11 +274,33 @@ export default new Vuex.Store({
                 '/orders/' + orderId + '/action/',
                 {action: 'confirm_payment'})
                 .then(response => {
-                    console.log(response)
                     context.dispatch('fetchOrders')
                 })
                 .catch(err => {
                     console.log('cannot set order ' + orderId + ' status to paid')
+                    console.log(err)
+                })
+        },
+
+        deleteBasketItem (context, itemId) {
+            Vue.axios.delete('/basket/' + itemId)
+                .then(response => {
+                    context.dispatch('fetchBasket')
+                })
+                .catch(err => {
+                    console.log('cannot delete item ' + itemId + ' from basket')
+                    console.log(err)
+                })
+        },
+
+        updateHotspotAppearance (context, payload) {
+            Vue.axios.put('/hs/' + payload.identity + '/appearance', {title: payload.title, text: payload.text})
+                .then((response) => {
+                    let appearance = response.data.appearance
+                    context.commit('setHotspotAppearance', {identity: payload.identity, appearance: appearance})
+                })
+                .catch((err) => {
+                    console.log('cannot set hotspot appearance')
                     console.log(err)
                 })
         }

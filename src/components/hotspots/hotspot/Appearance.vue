@@ -39,7 +39,7 @@
                             <input name="text" type="text" class="form-control" v-model="text">
                         </div>
                     </form>
-                    <button class="btn btn-default">Сохранить</button>
+                    <button class="btn btn-default" @click="updateHotspotAppearance">Сохранить</button>
                     <button class="btn btn-default" @click="reset">Сбросить</button>
                 </div>
             </div>
@@ -81,6 +81,15 @@ export default {
             } else {
                 console.log('keep logo')
             }
+        },
+
+        updateHotspotAppearance () {
+            let payload = {
+                identity: this.hotspot.identity,
+                title: this.title,
+                text: this.text
+            }
+            this.$store.dispatch('updateHotspotAppearance', payload)
         },
 
         reset () {

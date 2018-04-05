@@ -36,7 +36,10 @@
     </div>
 </template>
 <script>
+import VueSimpleSpinner from 'vue-simple-spinner'
+
 export default {
+    components: {VueSimpleSpinner},
     data () {
         return {
             username: '',

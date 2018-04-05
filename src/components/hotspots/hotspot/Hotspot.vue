@@ -16,7 +16,7 @@
                 <input name="amount" type="number" class="col-md-2 form-control form-control-sm" v-model="amount">
                 <div class="btn-group">
                     <button class="btn btn-success btn-sm">OK</button>
-                    <button class="btn btn-danger btn-sm">Отмена</button>
+                    <button class="btn btn-danger btn-sm" @click.prevent="switchFormVisibility">Отмена</button>
                 </div>
             </form>
         </div>
@@ -49,7 +49,7 @@
                         params: {id: hotspot.identity}
                     }">Внешний вид</router-link>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                 <router-link
                     class="nav-link"
                     active-class="active"
@@ -57,7 +57,7 @@
                         name: 'hotspot-settings',
                         params: {id: hotspot.identity}
                     }">Настройки</router-link>
-            </li>
+            </li> -->
         </ul>
         <br>
         <transition name="fade" mode="out-in">

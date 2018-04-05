@@ -28,7 +28,6 @@ export const routes = [
         name: 'home',
         path: '',
         component: Home
-        // redirect: {name: 'hotspots-list'}
     },
     {
         name: 'login',
@@ -112,17 +111,7 @@ export const routes = [
         redirect: {name: 'home'}
     }
 ]
-// router.beforeEach(
-//     (to, from, next) => {
-//         if (to.name === 'login') {
-//             next()
-//         }
-//         else if (!Vue.auth.check()) {
-//             next({name: 'login'})
-//         }
-//         next()
-//     }
-// )
+
 Vue.use(VueRouter)
 var router = new VueRouter({
     routes,

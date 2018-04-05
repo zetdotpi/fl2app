@@ -1,7 +1,9 @@
 <template>
-    <div class="col">
+    <div>
         <template v-if="basketItems.length === 0">
-            В вашей корзине ничего нет.
+            <p class="text-center">
+                В вашей корзине ничего нет.
+            </p>
         </template>
         <template v-else>
             <table class="table">
@@ -12,6 +14,7 @@
                         <th>Цена</th>
                         <th>Единицы</th>
                         <th>Сумма</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -23,6 +26,7 @@
                         <td>{{ item.price }}</td>
                         <td>{{ item.unit }}</td>
                         <td>{{ item.total_price }}</td>
+                        <td><a style="cursor: pointer;" @click.prevent="deleteItem(item.id)"><span class="material-icons">delete</span></a></td>
                     </tr>
                 </tbody>
             </table>
@@ -47,6 +51,10 @@ export default {
         submitOrder () {
             console.log('order submitted')
             this.$store.dispatch('submitOrder')
+        },
+        deleteItem (itemId) {
+            console.log('deleting item ' + itemId)
+            this.$store.dispatch('deleteBasketItem', itemId)
         }
     }
 }
