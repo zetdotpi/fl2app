@@ -26,7 +26,7 @@
                                     <span class="badge badge-pill badge-light">{{ basketItemsCount }}</span>
                                 </a>
                             </router-link>
-                            <!-- <router-link tag="li" class="nav-item" active-class="active" :to="{name: 'user-profile'}"><a class="nav-link">Мой профиль</a></router-link> -->
+                            <router-link tag="li" class="nav-item" active-class="active" :to="{name: 'user-profile'}"><a class="nav-link">Мой профиль</a></router-link>
                             <li class="nav-item" active-class="active"><a class="nav-link" @click="logout" style="cursor: pointer">Выйти</a></li>
                         </ul>
                     </template>

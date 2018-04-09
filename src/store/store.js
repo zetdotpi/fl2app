@@ -8,7 +8,8 @@ export default new Vuex.Store({
         hotspots: [],
         initialized: false,
         basket: [],
-        orders: []
+        orders: [],
+        user: {}
     },
     getters: {
         hotspots (state) {
@@ -28,6 +29,9 @@ export default new Vuex.Store({
         },
         initialized (state) {
             return state.initialized
+        },
+        userData (state) {
+            return state.user
         }
     },
     mutations: {
@@ -66,11 +70,6 @@ export default new Vuex.Store({
             state.basket = payload
         },
         setOrders (state, payload) { // payload is orders
-            // for (let order of payload) {
-            //     console.log(order)
-            //     order.created_datetime = Date(order.created_datetime)
-            //     state.orders.push(order)
-            // }
             state.orders = payload
         },
         appendOrder (state, payload) { // payload is order
@@ -83,6 +82,10 @@ export default new Vuex.Store({
             let hotspot = state.hotspots.find(h => h.identity === payload.identity)
             hotspot.appearance = payload.appearance
             // Vue.set(hotspot, 'appearance', payload.appearance)
+        },
+        setUserData (state, payload) {
+            Vue.set(state, 'user', payload)
+            // state.user = payload
         }
     },
     actions: {
@@ -90,7 +93,20 @@ export default new Vuex.Store({
             dispatch('fetchHotspots')
             dispatch('fetchBasket')
             dispatch('fetchOrders')
+            dispatch('fetchUser')
             commit('initializationDone')
+        },
+
+        fetchUser (context) {
+            Vue.axios.get('/auth/user')
+                .then(response => {
+                    let userData = response.data.data
+                    context.commit('setUserData', userData)
+                })
+                .catch(err => {
+                    console.log('cannot fetch user data')
+                    console.log(err)
+                })
         },
 
         fetchHotspots (context) {
@@ -132,7 +148,7 @@ export default new Vuex.Store({
                     Vue.router.push({name: 'hotspot-setup', params: {id: payload.identity}})
                 })
                 .catch(error => {
-                    console.log('cannot setup connection for hotspot ' + payload.identity)
+                    console.log('cannot setup connection for hotspot ' + payload.hotspotIdentity)
                     console.log(error)
                 })
         },
@@ -301,6 +317,18 @@ export default new Vuex.Store({
                 })
                 .catch((err) => {
                     console.log('cannot set hotspot appearance')
+                    console.log(err)
+                })
+        },
+
+        updateUserData (context, payload) {
+            console.log(payload)
+            Vue.axios.put('/users/' + payload.email, payload.data)
+                .then(response => {
+                    context.commit('setUserData', response.data.user)
+                })
+                .catch(err => {
+                    console.log('cannot update user profile')
                     console.log(err)
                 })
         }
