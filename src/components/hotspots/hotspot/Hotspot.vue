@@ -2,7 +2,7 @@
     <div :key="hotspot.identity">
         <div class="row flex justify-content-between align-items-center">
             <h1>{{ hotspot.name }}</h1>
-            <p v-if="hotspot.paidUntil != null">Оплачено до {{ hotspot.paid_until|moment('DD.MM.YYYY') }}</p>
+            <p v-if="hotspot.paidUntil != null">Оплачено до {{ hotspot.paidUntil | moment('DD.MM.YYYY') }}</p>
             <a
                 href="#"
                 class="btn btn-success btn-sm"

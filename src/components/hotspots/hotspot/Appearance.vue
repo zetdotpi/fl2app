@@ -4,10 +4,11 @@
             <div class="card">
                 <div class="card-header">Предпросмотр</div>
                 <div class="card-body">
-                    <h3>{{ this.hotspot.appearance.title }}</h3>
+                    <phone-preview ref="preview" :hotspotIdentity="this.hotspot.identity"></phone-preview>
+                    <!-- <h3>{{ this.hotspot.appearance.title }}</h3>
                     <p>{{ this.hotspot.appearance.text }}</p>
                     <img class="img-fluid" :src="this.hotspot.appearance.logo_absolute_path">
-                    <form @submit.prevent>
+                     --><form @submit.prevent>
                         <div class="form-group">
                             <input
                                 hidden
@@ -47,7 +48,10 @@
     </div>
 </template>
 <script>
+import PhonePreview from './PhonePreview'
+
 export default {
+    components: { PhonePreview },
     data () {
         return {
             title: '',
@@ -72,12 +76,14 @@ export default {
                     file: file
                 }
                 this.$store.dispatch('updateHotspotLogo', payload)
+                this.$refs.preview.reload()
             }
         },
 
         removeLogo () {
             if (confirm('Вы уверены, что хотите удалить изображение?')) {
                 this.$store.dispatch('removeHotspotLogo', this.hotspot.identity)
+                this.$refs.preview.reload()
             } else {
                 console.log('keep logo')
             }
@@ -89,6 +95,9 @@ export default {
                 title: this.title,
                 text: this.text
             }
+            console.log(this.$refs)
+            console.log(this.$refs.preview)
+            this.$refs.preview.reload()
             this.$store.dispatch('updateHotspotAppearance', payload)
         },
 
