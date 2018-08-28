@@ -4,11 +4,12 @@
             <router-link tag="button" class="btn btn-info" :to="{name: 'hotspots-new'}">Добавить новый</router-link>
             <ul class="nav nav-pills flex-column">
                 <li v-for="hs in hotspots" :key="hs.identity" class="nav-item">
-                    <router-link
+                    <list-item :hs="hs"/>
+                    <!-- <router-link
                         :to="{name: 'hotspot-details', params: {id: hs.identity}}"
                         :key="hs.identity"
                         class="nav-link"
-                        active-class="active">{{ hs.name || "[UNDEFINED]"}}</router-link>
+                        active-class="active">{{ hs.name || "[UNDEFINED]"}}</router-link> -->
                 </li>
             </ul>
         </nav>
@@ -21,7 +22,10 @@
 </template>
 <script>
 import {mapGetters, mapActions} from 'vuex'
+import ListItem from './ListItem'
+
 export default {
+    components: { ListItem },
     computed: {
         ...mapGetters(['hotspots'])
     },

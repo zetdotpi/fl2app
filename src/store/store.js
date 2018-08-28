@@ -83,6 +83,10 @@ export default new Vuex.Store({
             hotspot.appearance = payload.appearance
             // Vue.set(hotspot, 'appearance', payload.appearance)
         },
+        setHotspotOverview (state, payload) {
+            let hotspot = state.hotspots.find(h => h.identity === payload.identity)
+            hotspot.overview = payload.overview
+        },
         setUserData (state, payload) {
             Vue.set(state, 'user', payload)
             // state.user = payload
@@ -161,6 +165,19 @@ export default new Vuex.Store({
                         {
                             identity: hotspotIdentity,
                             interfaces: response.data
+                        })
+                }, error => {
+                    console.log(error)
+                })
+        },
+
+        getHotspotOverview (context, hotspotIdentity) {
+            Vue.axios.get('/hs/' + hotspotIdentity + '/overview')
+                .then(response => {
+                    context.commit('setHotspotOverview',
+                        {
+                            identity: hotspotIdentity,
+                            overview: response.data
                         })
                 }, error => {
                     console.log(error)
