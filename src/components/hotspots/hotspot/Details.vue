@@ -9,6 +9,7 @@
                     <form
                         class="form"
                         @submit.prevent="submitForm">
+                        <p>Продлить</p>
                         <div class="form-group">
                             <label for="amount">На сколько месяцев?</label>
                             <input name="amount" type="number" class="form-control form-control-sm" v-model="amount">
