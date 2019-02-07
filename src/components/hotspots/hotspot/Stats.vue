@@ -23,7 +23,7 @@
         :data="hotspot.stats.loginData"
         :fill="true"/>
     <p>{{ loginsTotal }} входов за выбранный период.</p>
-
+<!--
     <chartjs-bar
         :height="100"
         :scaledisplay="true"
@@ -34,6 +34,7 @@
         :data="hotspot.stats.smsData"
         :fill="true"/>
     <p>{{ smsTotal }} СМС использовано за выбранный период.</p>
+ -->
 </div>
 </template>
 <script>

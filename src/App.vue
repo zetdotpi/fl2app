@@ -1,8 +1,8 @@
 <template>
-    <div id="app">
+    <div id="app" class="container-fluid">
         <template v-if="this.$auth.ready()">
             <top-nav></top-nav>
-            <div class="container-fluid">
+            <div>
                 <router-view></router-view>
             </div>
         </template>

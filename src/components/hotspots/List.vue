@@ -1,15 +1,16 @@
 <template>
+    <main class="row">
+        <div class="col-md-4" v-for="hs in hotspots" :key="hs.identity">
+            <card-item :hs="hs"/>
+        </div>
+    </main>
+    <!--
     <div class="row">
         <nav class="col-sm-3 col-md-2 hidden-xs-down bg-faded sidebar justify-content">
-            <router-link tag="button" class="btn btn-info" :to="{name: 'hotspots-new'}">Добавить новый</router-link>
             <ul class="nav nav-pills flex-column">
+                <router-link tag="li" class="nav-item btn btn-info" :to="{name: 'hotspots-new'}">Добавить новый</router-link>
                 <li v-for="hs in hotspots" :key="hs.identity" class="nav-item">
                     <list-item :hs="hs"/>
-                    <!-- <router-link
-                        :to="{name: 'hotspot-details', params: {id: hs.identity}}"
-                        :key="hs.identity"
-                        class="nav-link"
-                        active-class="active">{{ hs.name || "[UNDEFINED]"}}</router-link> -->
                 </li>
             </ul>
         </nav>
@@ -19,13 +20,16 @@
             </transition>
         </main>
     </div>
+    -->
 </template>
 <script>
 import {mapGetters, mapActions} from 'vuex'
-import ListItem from './ListItem'
+// import ListItem from './ListItem'
+import CardItem from './CardItem'
 
 export default {
-    components: { ListItem },
+    // components: { ListItem },
+    components: { CardItem },
     computed: {
         ...mapGetters(['hotspots'])
     },

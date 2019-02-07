@@ -5,7 +5,7 @@ import Home from './components/Home'
 import Contacts from './components/Contacts'
 
 import List from './components/hotspots/List'
-import Overview from './components/hotspots/Overview'
+// import Overview from './components/hotspots/Overview'
 import Register from './components/hotspots/Register'
 
 import Hotspot from './components/hotspots/hotspot/Hotspot'
@@ -23,11 +23,30 @@ import Basket from './components/orders/Basket'
 
 import Login from './components/auth/Login'
 
+import EmailSent from './pages/EmailSent'
+import RegistrationCompletion from './pages/RegistrationCompletion'
+import RegistrationSuccess from './pages/RegistrationSuccess'
+
 export const routes = [
     {
         name: 'home',
         path: '',
         component: Home
+    },
+    {
+        name: 'emailSent',
+        path: '/registration/confirm',
+        component: EmailSent
+    },
+    {
+        name: 'profileRegForm',
+        path: '/registration/profile',
+        component: RegistrationCompletion
+    },
+    {
+        name: 'registrationCompleted',
+        path: '/registration/complete',
+        component: RegistrationSuccess
     },
     {
         name: 'login',
@@ -41,55 +60,49 @@ export const routes = [
     },
     {
         path: '/hotspots',
-        component: List,
+        name: 'hotspots-list',
+        component: List
+    },
+    {
+        path: '/hotspots/:id',
+        component: Hotspot,
         children: [
             {
-                name: 'hotspots-list',
+                name: 'hotspot-details',
                 path: '',
-                component: Overview
+                component: Details
             },
             {
-                path: ':id',
-                component: Hotspot,
-                children: [
-                    {
-                        name: 'hotspot-details',
-                        path: '',
-                        component: Details
-                    },
-                    {
-                        name: 'hotspot-stats',
-                        path: 'stats',
-                        component: Stats
-                    },
-                    {
-                        name: 'hotspot-appearance',
-                        path: 'appearance',
-                        component: Appearance
-                    },
-                    {
-                        name: 'hotspot-settings',
-                        path: 'settings',
-                        component: Settings
-                    }
-                ]
+                name: 'hotspot-stats',
+                path: 'stats',
+                component: Stats
             },
             {
-                name: 'hotspot-connect',
-                path: ':id/connect',
-                component: ConnectionSetup
+                name: 'hotspot-appearance',
+                path: 'appearance',
+                component: Appearance
             },
             {
-                name: 'hotspot-setup',
-                path: ':id/setup',
-                component: Setup
-            },
-            {
-                name: 'hotspots-new',
-                path: 'register',
-                component: Register
+                name: 'hotspot-settings',
+                path: 'settings',
+                component: Settings
             }
         ]
+    },
+    {
+        name: 'hotspot-connect',
+        path: 'hotspots/:id/connect',
+        component: ConnectionSetup
+    },
+    {
+        name: 'hotspot-setup',
+        path: 'hotspots/:id/setup',
+        component: Setup
+    },
+    {
+        name: 'hotspots-new',
+        path: 'hotspots/register',
+        component: Register
     },
     {
         name: 'user-profile',

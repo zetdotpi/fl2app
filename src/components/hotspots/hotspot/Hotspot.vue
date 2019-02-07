@@ -1,6 +1,6 @@
 g<template>
     <div :key="hotspot.identity">
-        <div class="row flex justify-content-between align-items-center">
+        <div class="row flex justify-content-center">
             <h1>{{ hotspot.name }}</h1>
         </div>
         <ul class="nav nav-tabs justify-content-center">

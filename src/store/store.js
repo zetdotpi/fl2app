@@ -348,6 +348,15 @@ export default new Vuex.Store({
                     console.log('cannot update user profile')
                     console.log(err)
                 })
+        },
+
+        getTargetingFile (context, payload) {
+            // payload.identity, payload.targetType
+            Vue.axios.get('/hs/' + payload.identity + '/targeting', {
+                params: {
+                    type: payload.targetType
+                }
+            })
         }
     }
 })

@@ -51,9 +51,26 @@
             </div>
         </div>
     </div>
+    <br>
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card-header">Выгрузка данных для таргетинга</div>
+                <div class="card-body">
+                    <div class="btn-group">
+                        <button class="btn btn-default adw" @click="getTargetingFile('adwords')">Google Adwords</button>
+                        <button class="btn btn-default fb" @click="getTargetingFile('facebook')">Facebook/IG</button>
+                        <button class="btn btn-default ya" @click="getTargetingFile('yandex')">Yandex</button>
+                        <button class="btn btn-default vk" @click="getTargetingFile('vk')">VK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 </template>
 <script>
+import fileDownload from 'js-file-download'
 export default {
     data () {
         return {
@@ -80,6 +97,17 @@ export default {
 
             this.switchFormVisibility()
             this.amount = 1
+        },
+        getTargetingFile (target) {
+            this.axios.get('/hs/' + this.hotspot.identity + '/targeting', {
+                params: { type: target }
+            })
+                .then(res => {
+                    let disposition = res.headers['content-disposition']
+                    let filename = decodeURI(disposition.match(/filename="(.*)"/)[1])
+                    fileDownload(res.data, filename)
+                })
+                .catch(e => { console.log(e) })
         }
     },
     mounted () {
@@ -87,5 +115,17 @@ export default {
     }
 }
 </script>
-<style>
+<style scoped>
+    .fb {
+        background-color: #8b9dc3;
+    }
+    .vk {
+        background-color: #7C90A6;
+    }
+    .adw {
+        background-color: #13a365;
+    }
+    .ya {
+        background-color: #ffdb4d;
+    }
 </style>

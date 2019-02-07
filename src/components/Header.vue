@@ -2,8 +2,8 @@
     <header>
         <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
                 <router-link class="navbar-brand" :to="{name: 'home'}">FeedLikes</router-link>
-                <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+                <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#navbarTop" aria-controls="navbarTop" aria-expanded="false" aria-label="Toggle navigation">
+                   <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarTop">
                     <template v-if="$auth.check()">
